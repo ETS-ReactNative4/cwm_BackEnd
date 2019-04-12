@@ -8,8 +8,7 @@ axios.interceptors.response.use(null, error => {
     error.response.status < 500;
 
   if (!expectedError) {
-    console.log("Logging the error", error);
-
+    Raven.captureException(error);
     toast("An unexpected error occurred.");
   }
 
